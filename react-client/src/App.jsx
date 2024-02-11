@@ -33,15 +33,15 @@ function App() {
   return (
     <Router>
       <Navbar bg="dark" variant="dark" expand="lg" className= "custom-nav">
-        <Container>
+        <Container className='container'>
           <Navbar.Brand href="#home"> <img src="src/assets/imgs/logo.png" alt="logo"  height = "90" width = "auto"></img> </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Nav.Link as={Link} to="/home" >Home</Nav.Link>
-              <Nav.Link as={Link} to="/login">Login</Nav.Link>
-              <Nav.Link as={Link} to="/list">List of Users</Nav.Link>
+              <Nav.Link as={Link} to="/home" >Home</Nav.Link>            
+              {/* <Nav.Link as={Link} to="/list">List of Users</Nav.Link>*/}
               <Nav.Link as={Link} to="/listgames">List of Games</Nav.Link>
+              <Nav.Link as={Link} to="/login">Login</Nav.Link>
               <Nav.Link as={Link} to="/create">Sign Up</Nav.Link>
             </Nav>
           </Navbar.Collapse>
@@ -65,8 +65,6 @@ function App() {
       </div>
 
     </Router>
-
-
   );
 }
 

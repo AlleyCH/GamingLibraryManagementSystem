@@ -54,6 +54,9 @@
 }
 
 .navbar > .container{
-  display: contents;
+  max-width: max-content;
+
 }
+
+
 
