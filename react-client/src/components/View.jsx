@@ -62,7 +62,7 @@ function View (props) {
               <p>{screen}</p>
               <p>{data}</p>
               <button onClick={verifyCookie}>Verify Cookie</button>
-              <button onClick={() => setGameOperation('create')}>Create Game</button>
+            {/* <button onClick={() => setGameOperation('create')}>Create Game</button>*/}
               
               <button onClick={() => setGameOperation('list')}>List Games</button>
   

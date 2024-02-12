@@ -4,7 +4,7 @@ import Spinner from 'react-bootstrap/Spinner';
 import Button from 'react-bootstrap/Button';
 import { useNavigate, useParams } from 'react-router-dom';
 //
-// this component is used to show a single article
+// this component is used to show a single game
 function ShowGame(props) {
   let navigate = useNavigate()
   let {id} = useParams();
@@ -54,7 +54,7 @@ function ShowGame(props) {
           <Button type="button" variant="primary" onClick={() => { editGame(data._id) }}>Edit</Button>&nbsp;
           <Button type="button" variant="danger" onClick={() => { deleteGame(data._id) }}>Delete</Button>
         </p>
-\    </div>
+    </div>
   );
 }
 

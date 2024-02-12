@@ -57,6 +57,9 @@
   max-width: max-content;
 
 }
+#root > div:nth-child(2) > div:nth-child(1) {
+  background: rgb(250, 215, 215);
+}
 
 
 

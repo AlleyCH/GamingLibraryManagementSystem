@@ -1,4 +1,5 @@
-﻿const mongoose = require('mongoose');
+﻿// CRUD functions for the games
+const mongoose = require('mongoose');
 const Game = mongoose.model('Game');
 const User = require('mongoose').model('User');
 
@@ -17,28 +18,33 @@ function getErrorMessage(err) {
 exports.create = function (req, res) {
     const game = new Game();
     game.title = req.body.title;
+    game.genre = req.body.genre;
+    game.platform = req.body.platform;
+    game.releaseYear = req.body.releaseYear;
+    game.developer = req.body.developer;
+    game.rating = req.body.rating;
     game.description = req.body.description;
-    //article.creator = req.body.username;
+
     console.log(req.body)
-    //
-    //
+    
     User.findOne({username: req.body.username}, (err, user) => {
+        if (err) { 
+            return res.status(400).send({
+                message: getErrorMessage(err)
+            });
+        }
+        
+        if (!user) {
+            return res.status(404).send({
+                message: 'User not found'
+            });
+        }
 
-        if (err) { return getErrorMessage(err); }
-        //
+        // Set req.id here
         req.id = user._id;
-        console.log('user._id',req.id);
-
-	
-    }).then( function () 
-    {
-        game.description = req.id
-        console.log('req.user._id',req.id);
 
         game.save((err) => {
             if (err) {
-                console.log('error', getErrorMessage(err))
-
                 return res.status(400).send({
                     message: getErrorMessage(err)
                 });
@@ -46,13 +52,12 @@ exports.create = function (req, res) {
                 res.status(200).json(game);
             }
         });
-    
     });
 };
 //
 exports.list = function (req, res) {
-    Game.find().sort('-created').populate('developer', 'firstName lastName fullName').exec((err, games) => {
-if (err) {
+    Game.find().sort('-created').populate('creator', 'username').exec((err, games) => {
+        if (err) {
         return res.status(400).send({
             message: getErrorMessage(err)
         });
@@ -80,7 +85,13 @@ exports.update = function (req, res) {
     console.log('in update:', req.game)
     const game = req.game;
     game.title = req.body.title;
+    game.genre = req.body.genre;
+    game.platform = req.body.platform;
+    game.releaseYear = req.body.releaseYear;
+    game.developer = req.body.developer;
+    game.rating = req.body.rating;
     game.description = req.body.description;
+
     game.save((err) => {
         if (err) {
             return res.status(400).send({

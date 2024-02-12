@@ -1,11 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as THREE from 'three';
 import Stats from 'three/examples/jsm/libs/stats.module.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GUI } from 'three/examples/jsm/libs/lil-gui.module.min.js'; // You may need to adjust the path
 import './home.css'
 
+// for showing games
+import axios from 'axios';
+import Spinner from 'react-bootstrap/Spinner';
+import Button from 'react-bootstrap/Button';
+import { useNavigate, useParams } from 'react-router-dom';
+
 function Home(props) {
+    
     useEffect(() => {
         let camera, scene, renderer, controls, stats;
         let mesh;
@@ -56,7 +63,7 @@ function Home(props) {
             gui.add(mesh, 'count', 0, count);
 
             renderer = new THREE.WebGLRenderer({ antialias: true });
-            renderer.setPixelRatio(window.devicePixelRatio *3);
+            renderer.setPixelRatio(window.devicePixelRatio *5);
             //renderer.setSize(window.innerWidth, window.innerHeight);
             document.querySelector('.threejs').appendChild(renderer.domElement);
             //document.body.appendChild(renderer.domElement);
@@ -131,16 +138,17 @@ function Home(props) {
                 <p></p>
       
             </div>
-            <p id = 'available-para'>Available Games</p>
+            <h1 id = 'available-para'>Available Games</h1>
             <div className='available-games'>
-                <iframe frameborder="0" src="https://itch.io/embed/1781275?dark=true" width="552" height="167"><a href="https://alleyc.itch.io/alphaprojectz">ProjectZ by DinoBois</a></iframe>
-                <iframe frameborder="0" src="https://itch.io/embed/1774937?dark=true" width="552" height="167"><a href="https://alleyc.itch.io/midterm">Tutorial by AlleyC</a></iframe>                
+                <iframe frameborder="0" src="https://itch.io/embed/1781275?dark=true" width="552" height="167"><a href="https://alleyc.itch.io/alphaprojectz"></a></iframe>
+                <iframe frameborder="0" src="https://itch.io/embed/1774937?dark=true" width="552" height="167"><a href="https://alleyc.itch.io/midterm"></a></iframe>                
                
             </div>
         </div>
     );
 
 }
+
 // withRouter will pass updated match, location, and history props 
 // to the wrapped component whenever it renders.
 export default Home;

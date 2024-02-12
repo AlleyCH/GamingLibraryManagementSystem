@@ -1,6 +1,7 @@
 ﻿const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
+// Define the game schema
 const GameSchema = new Schema({
     title: {
         type: String,
@@ -9,40 +10,37 @@ const GameSchema = new Schema({
         required: 'Title cannot be blank'
     },
     genre: {
-        type: String, default: '',
+        type: String,
+        default: '',
         trim: true
     },
-  
-    platform:{
-        type: String, //platfrom of what the game can be played on
+    platform: {
+        type: String,
         required: 'Platform cannot be blank'
     },
-
-    releaseYear: { 
+    releaseYear: {
         type: Date,
         default: Date.now,
-        required: 'release year cannot be blank'
+        required: 'Release year cannot be blank'
     },
-   
     developer: {
         type: String,
-        required: 'developer cannot be blank'
+        required: 'Developer cannot be blank'
     },
-
     rating: {
         type: Number
     },
-
     description: {
-        type: String, default: '',
-        required: 'description cannot be blank',
+        type: String,
+        default: '',
+        required: 'Description cannot be blank',
         trim: true
     },
-
-    creator: {
-        type: Schema.ObjectId,
-        ref: 'User'
-    }
 });
 
-mongoose.model('Game', GameSchema);
+GameSchema.set('toJSON', {
+	getters: true,
+	virtuals: true
+});
+// Create a model based on the game schema
+const Game = mongoose.model('Game', GameSchema);

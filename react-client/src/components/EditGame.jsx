@@ -13,7 +13,7 @@ function EditGame(props) {
   console.log(id)
   //
   const [game, setGame] = useState({ _id: '', title: '', 
-  content: '' });  
+  description: '' });  
   const [showLoading, setShowLoading] = useState(true);
   const apiUrl = "/api/api/games/" + id;
   //runs only once after the first render
@@ -33,7 +33,7 @@ function EditGame(props) {
   const updateGame = (e) => {
     setShowLoading(true);
     e.preventDefault();
-    const data = { title: game.title, content: game.content};
+    const data = { title: game.title, description: game.description};
     //mimicks very much REST calls
     axios.put(apiUrl, data)
       .then((result) => {
@@ -58,11 +58,11 @@ function EditGame(props) {
         <Form onSubmit={updateGame}>
           <Form.Group>
             <Form.Label> Title</Form.Label>
-            <Form.Control type="text" name="title" id="title" placeholder="Enter article title" value={game.title} onChange={onChange} />
+            <Form.Control type="text" name="title" id="title" placeholder="Enter game title" value={game.title} onChange={onChange} />
             </Form.Group>
           <Form.Group>
             <Form.Label> Last Name</Form.Label>
-            <Form.Control type="text" name="content" id="content" placeholder="Enter article content" value={game.content} onChange={onChange} />
+            <Form.Control type="text" name="description" id="description" placeholder="Enter game description" value={game.content} onChange={onChange} />
           </Form.Group>
           
           

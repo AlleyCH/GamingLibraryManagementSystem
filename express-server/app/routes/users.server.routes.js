@@ -1,4 +1,5 @@
-﻿// Load the 'users' controller
+﻿// Manages incoming requests and directs them to the appropriate controller actions
+// Load the 'users' controller
 var users = require('../../app/controllers/users.server.controller');
 var express = require('express');
 var router = express.Router();

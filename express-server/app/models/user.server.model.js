@@ -2,6 +2,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const Game = require('./game.server.model');
+
 //Define a schema
 const Schema = mongoose.Schema;
 //
@@ -33,6 +35,10 @@ var UserSchema = new Schema({
 	},
 
 	//games: [{  type: Schema.Types.ObjectId, ref: Game }]
+	games: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Game' // Refers to the Game model
+    }]
 });
 
 // Set the 'fullname' virtual property
@@ -68,3 +74,4 @@ UserSchema.set('toJSON', {
 
 // Create the 'User' model out of the 'UserSchema'
 mongoose.model('User', UserSchema);
+mongoose.model('Games', Game);
